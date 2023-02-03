@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int t;
+    cin >> t;
+    while(t--){
+        int n;
+        cin >> n;
+        vector<int> arr(n);
+        int i;
+        for(i = 0; i < n; i++)
+            cin >> arr[i];
+        long long ans = 0;
+        for(int bit = 0; bit < 25 ; bit++){
+            vector<int> vec;
+            for(i = 0; i < n ; i++)
+                vec.push_back((arr[i] >> bit)&1);
+            int j = n;
+            while(j > 0 && vec[j - 1] == 1)
+                j--;
+            // [j, n-1] has all ones
+            j = max(j, 1);
+            ans = ans + (n - j + 1)*1ll*(1 << bit);
+            for(i = 1; i < n ; i++) // removing from 'i'
+            {
+                if(vec[i-1] == 0)
+                    break;
+                j = max(j, i + 1);
+                ans = ans + (n - j + 1)*1ll*(1 << bit);
+            }
+        }
+        ans = ans - (1ll << 25) + 1;
+        cout << ans << '\n';
+    }
+}
