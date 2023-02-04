@@ -21,20 +21,23 @@ using namespace std;
 const int MOD =  (int)1e9 + 7;
 
 int solve() {
-    int n;
-    string s;
-    cin>>n>>s;
-    while(1){
-        if (s[0]==s[s.size()-1])
+    int n, m;
+    int cnt=0;
+    cin >> n >> m;
+    set<string>p;
+    while (n--) {
+        string s;
+        cin >> s;
+        cnt++;
+        if (cnt<=m)
         {
-            break;
-        }
-        else{
-            s.erase(s.begin());
-            s.erase(s.size()-1);
+            p.insert(s);
         }
     }
-    cout<<s.size()<<endl;
+    for (auto i:p)
+    {
+        cout<<i<<endl;
+    }
     return 0;
 }
 
@@ -42,7 +45,7 @@ int main() {
     //ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
     int test = 1, tc = 0;
     //Int(test);
-    cin >> test;
+    //cin >> test;
     while (test--) {
         //printf("Case %d: ", ++tc);
         solve();

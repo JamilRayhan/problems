@@ -22,26 +22,24 @@ const int MOD =  (int)1e9 + 7;
 
 int solve() {
     ll n;
-    cin>>n;
-    ll arr[n+5];
+    cin >> n;
+    ll arr[n + 5],cnt=0,sum=0;
     for (int i = 0; i < n; ++i)
     {
-    	cin>>arr[i];
+        cin >> arr[i];
+        if (arr[i]<0)
+        {
+            cnt++;
+            arr[i]*=-1;
+        }
+        sum+=arr[i];
     }
-    for (int i = 0; i < n-1; ++i)
+    sort(arr,arr+n);
+    if (cnt&1)
     {
-    	if (arr[i]<=arr[i+1]&&abs(arr[i])>=abs(arr[i+1]))
-    	{
-    		arr[i]=arr[i]*-1;
-    		arr[i+1]=arr[i+1]*-1;
-    	}
+        sum-=2*arr[0];
     }
-    ll ans=0;
-    for (int i = 0; i < n; ++i)
-    {
-    	ans+=arr[i];
-    }
-    cout<<ans<<endl;
+    cout<<sum<<endl;
     return 0;
 }
 

@@ -23,7 +23,7 @@ const int MOD =  (int)1e9 + 7;
 int solve() {
 	int n, q;
 	cin >> n >> q;
-	int arr[n + 5], b[n + 5];
+	int arr[n + 5], b[n + 5], c[n + 5], d[n + 5];
 	for (int i = 0; i < n; ++i)
 	{
 		cin >> arr[i];
@@ -39,31 +39,56 @@ int solve() {
 			b[i] /= 10;
 		}
 		b[i] = sum;
+		c[i] = b[i];
+	} 
+	for (int i = 0; i < n ; ++i)
+	{
+		int sum = 0;
+		while (c[i] > 0)
+		{
+			int m = c[i] % 10;
+			sum = sum + m;
+			c[i] /= 10;
+		}
+		c[i] = sum;
+		d[i] = c[i];
+		
 	}
+	for (int i = 0; i < n ; ++i)
+	{
+		int sum = 0;
+		while (d[i] > 0)
+		{
+			int m = d[i] % 10;
+			sum = sum + m;
+			d[i] /= 10;
+		}
+		d[i] = sum;
+	}
+	int cnt=0;
 	while (q--) {
 		int a;
 		cin >> a;
 		if (a == 1)
 		{
+			cnt++;
 			int l, r;
 			cin >> l >> r;
-			for (int i = l - 1; i < r; ++i)
+			if (cnt==1)
 			{
-				if (arr[i] == b[i])
-				{
-					int sum = 0;
-					while (arr[i] > 0)
-					{
-						int m = arr[i] % 10;
-						sum = sum + m;
-						arr[i] /= 10;
-					}
-					arr[i] = sum;
-				}
-				else{
-					arr[i]=b[i];
-				}
+				for (int i = l - 1; i < r; ++i)
+					arr[i] = b[i];
 			}
+			if (cnt==2)
+			{
+				for (int i = l - 1; i < r; ++i)
+					arr[i] = c[i];
+			}
+			if (cnt>=3)
+			{
+				for (int i = l - 1; i < r; ++i)
+					arr[i] = d[i];
+			}	
 		}
 		else {
 			int x;

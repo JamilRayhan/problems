@@ -24,21 +24,23 @@ int solve() {
     int n;
     string s;
     cin>>n>>s;
-    int arr[27]={0},a=0,b=0;
-    
-    for (int i = 0; i < n; ++i)
-    {
-    	
+    int ans=0,cnt1=0,cnt2=0;
+    map<char, int> mp1,mp2;
+    for(auto x:s){
+        mp1[x]++;
+        if (mp1[x]==1)
+        {
+            cnt1++;
+        } 
     }
-    string p=s;
-    reverse(all(p));
-    set<char>c,d;
-    int ans=-1;
-    for (int i = 0; i < (n+1)/2; ++i)
+    for (int i = 0; i < n-1; ++i)
     {
-    	c.insert(s[i]);
-    	d.insert(p[i]);
-    	ans=max(ans,sz(c)+sz(d));
+        mp1[s[i]]--;
+        mp2[s[i]]++;
+        if (mp2[s[i]]==1) cnt2++;
+        if (mp1[s[i]]==0) cnt1--;
+    
+        ans=max(ans,cnt1+cnt2);
     }
     cout<<ans<<endl;
     return 0;
