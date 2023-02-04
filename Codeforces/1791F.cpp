@@ -21,34 +21,61 @@ using namespace std;
 const int MOD =  (int)1e9 + 7;
 
 int solve() {
-	ll n, x;
-	cin >> n >> x;
-	ll a, even = 0;
+	int n, q;
+	cin >> n >> q;
+	int arr[n + 5], b[n + 5];
 	for (int i = 0; i < n; ++i)
 	{
-		cin >> a;
-		if (!(a & 1))
-		{
-			even++;
-		}
+		cin >> arr[i];
+		b[i] = arr[i];
 	}
-	if (even == 0)
-		cout << 0 << endl;
-	
-	else if (n-even == 0&& x%2==0)
-		cout << -1 << endl;
-
-	else {
-		if (x%2)
-			cout<<(even+1)/2<<endl;
-		else 
-			cout << even << endl;
+	for (int i = 0; i < n ; ++i)
+	{
+		int sum = 0;
+		while (b[i] > 0)
+		{
+			int m = b[i] % 10;
+			sum = sum + m;
+			b[i] /= 10;
+		}
+		b[i] = sum;
+	}
+	while (q--) {
+		int a;
+		cin >> a;
+		if (a == 1)
+		{
+			int l, r;
+			cin >> l >> r;
+			for (int i = l - 1; i < r; ++i)
+			{
+				if (arr[i] == b[i])
+				{
+					int sum = 0;
+					while (arr[i] > 0)
+					{
+						int m = arr[i] % 10;
+						sum = sum + m;
+						arr[i] /= 10;
+					}
+					arr[i] = sum;
+				}
+				else{
+					arr[i]=b[i];
+				}
+			}
+		}
+		else {
+			int x;
+			cin >> x;
+			cout << arr[x - 1] << endl;
+		}
 	}
 	return 0;
 }
 
 int main() {
-	//ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	int test = 1, tc = 0;
 	//Int(test);
 	cin >> test;

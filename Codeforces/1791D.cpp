@@ -21,40 +21,37 @@ using namespace std;
 const int MOD =  (int)1e9 + 7;
 
 int solve() {
-	ll n, x;
-	cin >> n >> x;
-	ll a, even = 0;
-	for (int i = 0; i < n; ++i)
-	{
-		cin >> a;
-		if (!(a & 1))
-		{
-			even++;
-		}
-	}
-	if (even == 0)
-		cout << 0 << endl;
-	
-	else if (n-even == 0&& x%2==0)
-		cout << -1 << endl;
-
-	else {
-		if (x%2)
-			cout<<(even+1)/2<<endl;
-		else 
-			cout << even << endl;
-	}
-	return 0;
+    int n;
+    string s;
+    cin>>n>>s;
+    int arr[27]={0},a=0,b=0;
+    
+    for (int i = 0; i < n; ++i)
+    {
+    	
+    }
+    string p=s;
+    reverse(all(p));
+    set<char>c,d;
+    int ans=-1;
+    for (int i = 0; i < (n+1)/2; ++i)
+    {
+    	c.insert(s[i]);
+    	d.insert(p[i]);
+    	ans=max(ans,sz(c)+sz(d));
+    }
+    cout<<ans<<endl;
+    return 0;
 }
 
 int main() {
-	//ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	int test = 1, tc = 0;
-	//Int(test);
-	cin >> test;
-	while (test--) {
-		//printf("Case %d: ", ++tc);
-		solve();
-	}
-	return 0;
+    //ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    int test = 1, tc = 0;
+    //Int(test);
+    cin >> test;
+    while (test--) {
+        //printf("Case %d: ", ++tc);
+        solve();
+    }
+    return 0;
 }

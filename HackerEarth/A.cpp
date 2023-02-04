@@ -21,13 +21,20 @@ using namespace std;
 const int MOD =  (int)1e9 + 7;
 
 int solve() {
-    int n,x,y;
-    cin>>n>>x>>y;
-    if (n+x+y>=6)
-    {
-    	yes
+    int n;
+    string s;
+    cin>>n>>s;
+    while(1){
+        if (s[0]==s[s.size()-1])
+        {
+            break;
+        }
+        else{
+            s.erase(s.begin());
+            s.erase(s.size()-1);
+        }
     }
-    else no
+    cout<<s.size()<<endl;
     return 0;
 }
 
