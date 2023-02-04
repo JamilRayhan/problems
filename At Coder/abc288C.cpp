@@ -65,7 +65,7 @@ int main()
 		--a,--b;
 		g1.addEdge(a, b);
 	}
-	if(g1.isCyclic()>1)
+	if(g1.isCyclic()>2)
 		cout<<g1.isCyclic()-1<<endl;
 	else
 		cout<<g1.isCyclic()<<endl;
