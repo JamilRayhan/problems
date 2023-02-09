@@ -21,21 +21,19 @@ using namespace std;
 const int MOD =  (int)1e9 + 7;
 
 int solve() {
-    int n;
-    cin >> n ;
-    string s;
-    cin>>s;
-    int a[26]={0};
+    int n,w,h;
+    cin>>n>>w>>h;
+    int a[n+5];
     for (int i = 0; i < n; ++i)
     {
-        a[s[i]-'a']++;
-        if (a[s[i]-'a']>=2)
-        {
-            cout<<sz(s)-2<<endl;
-            return 0;
-        }
+    	cin>>a[i];
     }
-    cout<<-1<<endl;
+    int mn=INT_MAX;
+    int mx=-1*mn;
+    for (int i = 0; i < n; ++i)
+    {
+    	
+    }
     
     return 0;
 }

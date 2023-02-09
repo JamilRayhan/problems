@@ -21,33 +21,31 @@ using namespace std;
 const int MOD =  (int)1e9 + 7;
 
 int solve() {
-    int n;
-    cin >> n ;
-    string s;
-    cin>>s;
-    int a[26]={0};
-    for (int i = 0; i < n; ++i)
-    {
-        a[s[i]-'a']++;
-        if (a[s[i]-'a']>=2)
-        {
-            cout<<sz(s)-2<<endl;
-            return 0;
-        }
-    }
-    cout<<-1<<endl;
-    
-    return 0;
+	int n;
+	cin >> n;
+	int a = 0, b = 0;
+	int i = 0;
+	for (; ++i; )
+	{
+		if (i > n)
+		{
+			i % 4 < 2 ? a += n : b += n;
+			i = -1;
+		}
+		else i % 4 < 2 ? a += i : b += i, n -= i;
+	}
+	cout << a << " " << b << endl;
+	return 0;
 }
 
 int main() {
-    //ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    int test = 1, tc = 0;
-    //Int(test);
-    cin >> test;
-    while (test--) {
-        //printf("Case %d: ", ++tc);
-        solve();
-    }
-    return 0;
+	//ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	int test = 1, tc = 0;
+	//Int(test);
+	cin >> test;
+	while (test--) {
+		//printf("Case %d: ", ++tc);
+		solve();
+	}
+	return 0;
 }
