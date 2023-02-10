@@ -23,28 +23,43 @@ const int MOD =  (int)1e9 + 7;
 int solve() {
     int n;
     cin>>n;
-    int a[n+5],b[n+5];
+    int a[n+5],one=0,two=0;
     for (int i = 0; i < n; ++i)
     {
     	cin>>a[i];
-    	b[i]=a[i];
+    	if (a[i]==1)
+        {
+            one++;
+        }
+        else two++;
     }
-    reverse(b,b+n);
-    for (int i = 0; i < n-1; ++i)
+    if (two&1)
     {
-    	b[i+1]*=b[i];
+        cout<<-1<<endl;
+        return 0;
     }
-    reverse(b,b+n);
-    for (int i = 0; i < n-1; ++i)
+    if (n==one)
     {
-    	a[i+1]*=a[i];
-    	if (a[i]==b[i+1])
-    	{
-    		cout<<i+1<<endl;
-    		return 0;
-    	}
+        cout<<1<<endl;
+        return 0;
     }
-    cout<<-1<<endl;
+    int half=two/2;
+    for (int i = 0; i < n; ++i)
+    {
+        
+        if (a[i]==2)
+        {
+            half--;
+        }
+        if (half==0)
+        {
+            cout<<i+1<<endl;
+            break;
+        }
+
+    }
+    
+    
     return 0;
 }
 

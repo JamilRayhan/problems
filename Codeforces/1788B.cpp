@@ -18,18 +18,28 @@ int solve() {
 	gfg g;
     int n;
     cin>>n;
-    int tmp=n/2;
     if (n%2==0)
     {
-    	cout<<n/2<<" "<<n/2<<endl;
-    	return 0;
+        cout<<n/2<<" "<<n/2<<endl;
+        return 0;
     }
-    if (abs(g.sumDigits(tmp+1)-g.sumDigits(tmp))<=1)
+    int tmp=n%10;
+    if (tmp != 9)
     {
-    	cout<<n/2<<" "<<n/2+1<<endl;
+        cout<<n/2<<" "<<n/2+1<<endl;
     }
     else{
-    	cout<<n/2-4<<" "<<n/2+5<<endl;
+        int a=n/2,b=n/2+1;
+        while(1){
+            int x=abs(g.sumDigits(a)-g.sumDigits(b));
+            if (x<=1)
+            {
+                break;
+            }
+            a--;
+            b++;
+        }
+        cout<<a<<" "<<b<<endl;
     }
     return 0;
 }
