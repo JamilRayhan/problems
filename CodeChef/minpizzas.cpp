@@ -1,13 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+#define lpi(n)   for(int i=0 ; i<n ; i++)
+#define lpj(n)   for(int j=0 ; j<n ; j++)
 #define ll       long long int
 #define ull      unsigned ll
 #define pii      pair<int, int>
 #define pll      pair<ll, ll>
 #define mp       make_pair
 #define pb       push_back
-#define gcd      _gcd
+#define gcd      __gcd
 #define str_int  stoi
 #define sz(x)    (int) x.size()
 #define endl     "\n"
@@ -16,36 +18,20 @@ using namespace std;
 #define all(v)   v.begin(), v.end()
 #define mxv(v)   *max_element(v.begin(), v.end())
 #define mnv(v)   *min_element(v.begin(), v.end())
-const int MOD = (int)1e9 + 7;
-
-int solve() {
-	int n;
-	cin >> n;
-	if (n==1)
+const int MOD =  (int)1e9 + 7;
+void test(int arr[],int n){
+	int i;
+	for (i = 0; i < n; ++i)
 	{
-		cout<<3<<endl;
+		arr[i]*=10;
 	}
-	else{
-		cout<<3;
-		for (int i = 0; i < n-2; ++i)
-		{
-			cout<<0;
-		}
-		cout<<3<<endl;
-	}
-	return 0;
 }
-
 int main() {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	cout.tie(0);
-	int test = 1, tc = 0;
-	//Int(test);
-	cin >> test;
-	while (test--) {
-		//printf("Case %d: ", ++tc);
-		solve();
+	int i,x[]={1,2,3,4,5};
+	test(x,5);
+	for (i = 0; i < 5; i++)
+	{
+		cout<<x[i]<<endl;
 	}
-	return 0;
+   return 0;
 }
