@@ -20,22 +20,19 @@ using namespace std;
 #define mnv(v)   *min_element(v.begin(), v.end())
 const int MOD =  (int)1e9 + 7;
 
-int solve() {
-    int n;
-    cin >> n ;
-    string s;
-    cin>>s;
-    int a[26]={0};
-    for (int i = 0; i < n; ++i)
+int recur(int row,int pos){
+    if (pos==1||pos==row)
     {
-        a[s[i]-'a']++;
-        if (a[s[i]-'a']>=2)
-        {
-            cout<<sz(s)-2<<endl;
-            return 0;
-        }
+        return 1;
     }
-    cout<<-1<<endl;
+    return recur(row-1,pos-1)+recur(row-1,pos);
+}
+
+int solve() {
+    //pascel triangle
+    int row,pos;
+    cin>>row>>pos;
+    cout<<recur(row,pos)<<endl;
     
     return 0;
 }
