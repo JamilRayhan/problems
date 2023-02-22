@@ -1,50 +1,32 @@
-#include<bits/stdc++.h>
+#include <iostream>
+
 using namespace std;
 
-#define lpi(n)   for(int i=0 ; i<n ; i++)
-#define lpj(n)   for(int j=0 ; j<n ; j++)
-#define ll       long long int
-#define ull      unsigned ll
-#define pii      pair<int, int>
-#define pll      pair<ll, ll>
-#define mp       make_pair
-#define pb       push_back
-#define gcd      __gcd
-#define str_int  stoi
-#define sz(x)    (int) x.size()
-#define endl     "\n"
-#define yes      cout<<"YES"<<endl;
-#define no       cout<<"NO"<<endl;
-#define all(v)   v.begin(), v.end()
-#define mxv(v)   *max_element(v.begin(), v.end())
-#define mnv(v)   *min_element(v.begin(), v.end())
-const int MOD =  (int)1e9 + 7;
-
-int recur(int row,int pos){
-    if (pos==1||pos==row)
-    {
-        return 1;
-    }
-    return recur(row-1,pos-1)+recur(row-1,pos);
-}
-
-int solve() {
-    //pascel triangle
-    int row,pos;
-    cin>>row>>pos;
-    cout<<recur(row,pos)<<endl;
-    
-    return 0;
-}
-
 int main() {
-    //ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    int test = 1, tc = 0;
-    //Int(test);
-    cin >> test;
-    while (test--) {
-        //printf("Case %d: ", ++tc);
-        solve();
+    long long N;
+    cin >> N;
+    
+    for (long long c = 1; c <= 1e18; c++) {
+        long long d = c ^ N;
+        if (d > 1e18) continue;
+        long long a_or_b = d | c;
+        if (a_or_b >= (1LL << 62)) continue;
+        long long a_xor_b = d ^ c;
+        if (a_xor_b >= (1LL << 62)) continue;
+        long long a_b_mask = (1LL << 62) - 1;
+        for (long long a_mask = 1; a_mask <= a_b_mask; a_mask <<= 1) {
+            if ((a_or_b & a_mask) == 0) continue;
+            long long b_mask = a_b_mask ^ a_mask;
+            if ((a_xor_b & b_mask) != b_mask) continue;
+            long long a = a_or_b & a_mask;
+            long long b = a_or_b & b_mask;
+            if (a != b && a != c && a != d && b != c && b != d && c != d) {
+                cout << a << " " << b << " " << c << " " << d << endl;
+                return 0;
+            }
+        }
     }
+    
+    cout << -1 << endl;
     return 0;
 }
