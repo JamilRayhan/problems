@@ -1,60 +1,60 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-bool evaluate_expr(vector<char>& expr, int X) {
-    // convert the vector of operators to a string
-    string expr_str(expr.begin(), expr.end());
+#define lpi(n)   for(int i=0 ; i<n ; i++)
+#define lpj(n)   for(int j=0 ; j<n ; j++)
+#define ll       long long int
+#define ull      unsigned ll
+#define pii      pair<int, int>
+#define pll      pair<ll, ll>
+#define mp       make_pair
+#define pb       push_back
+#define gcd      __gcd
+#define str_int  stoi
+#define sz(x)    (int) x.size()
+#define endl     "\n"
+#define yes      cout<<"YES"<<endl;
+#define no       cout<<"NO"<<endl;
+#define all(v)   v.begin(), v.end()
+#define mxv(v)   *max_element(v.begin(), v.end())
+#define mnv(v)   *min_element(v.begin(), v.end())
+const int MOD =  (int)1e9 + 7;
 
-    // evaluate the expression
-    int result = stoi("1" + expr_str + "1");
-
-    // return whether the result matches X
-    return (result == X);
-}
-
-bool generate_helper(vector<char>& expr, int i, int N, int X) {
-    // base case: if we have reached the end of the string, check if the expression evaluates to X
-    if (i == N) {
-        return evaluate_expr(expr, X);
+void ifgodwills() {
+    int N, X;
+    cin >> N >> X;
+    int maximum = N + 1;
+    int minimum = -(N-1);
+    if(X >maximum || X < minimum) {
+        cout << -1 << "\n";
+        return;
     }
-
-    // recursive case: try replacing the i-th operator with * or -
-    for (char op : {'*', '+', '-'}) {
-        expr[i] = op;
-        if (generate_helper(expr, i + 1, N, X)) {
-            return true;
+    if(X >= 1) {
+        for(int i=0; i<X-1; i++) {
+            cout << "+";
         }
+        for(int i=0; i<N-X+1; i++) {
+            cout << "*";
+        }
+        cout << "\n";
+        return;
+    } 
+    if(X <= 0) {
+        for(int i=0; i<=abs(X); i++) {
+            cout << "-";
+        }
+        for(int i = 0; i<N-abs(X)-1;i++) {
+            cout << "*";
+        }
+        cout << "\n";
     }
-
-    // if we have tried all possible replacements and none worked, reset the i-th operator to +
-    expr[i] = '+';
-    return false;
-}
-
-string generate_expression(int N, int X) {
-    // start with a vector of length N consisting only of + operators
-    vector<char> expr(N, '+');
-
-    // call the helper function to generate the expression
-    if (generate_helper(expr, 0, N, X)) {
-        // convert the vector of operators to a string
-        string expr_str(expr.begin(), expr.end());
-        return expr_str;
-    } else {
-        return "-1";
-    }
-}
-
+    
+}  
 int main() {
-    int t;
-    cin >> t;
-    while (t--) {
-        int N ;
-        int X ;
-        cin >> N >> X;
-        string expr = generate_expression(N, X);
-        cout << expr << endl; // output: "+*+-"
+    fastio
+    int t = 1 ;
+    std::cin >> t;
+    while(t--) {
+        ifgodwills() ;
     }
-
-    return 0;
 }

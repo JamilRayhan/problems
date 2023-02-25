@@ -21,14 +21,24 @@ using namespace std;
 const int MOD =  (int)1e9 + 7;
 
 int solve() {
-	ll n;
+	ll n, a, b, c, d;
 	cin >> n;
 	if (n == 0)
-	{
-		cout << -1 << endl;
-	}
+		cout << "3 1 6 7" << endl;
+	else if (n == 1)
+		cout << "1 4 3 2" << endl;
+	else if (n == 2)
+		cout << "2 4 3 1" << endl;
+	else if (n == 3)
+		cout << "8 3 2 1" << endl;
 	else
-		cout << 2 << " " << 4 << " " << n+1 << " " << 1 << endl;
+	{
+		a = 1;
+		b = 2;
+		c = 3;
+		d = n ^ 3;
+		cout << a << " " << b << " " << c << " " << d << " " << endl;
+	}
 	return 0;
 }
 
