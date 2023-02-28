@@ -20,28 +20,36 @@ using namespace std;
 #define mnv(v)   *min_element(v.begin(), v.end())
 const int MOD =  (int)1e9 + 7;
 
-string s="FBFBFFBFFBFBFFBFFB";
 int solve() {
-    int n;
-    cin>>n;
-    string p;
-    cin>>p;
-    size_t found=s.find(p);
-    if (found != string::npos){
-        yes;
-    }
-    else no;
-    return 0;
+	string s, t;
+	cin >> s >> t;
+	if (s[0] == t[0]) {
+		cout << "YES\n" << s[0] << "*\n";
+		return 0;
+	}
+	if (s.back() == t.back()) {
+		cout << "YES\n*" << s.back() << "\n";
+		return 0;
+	}
+	for (int i = 1; i < s.length(); i++)
+		for (int j = 1; j < t.length(); j++) {
+			if (s[i - 1] == t[j - 1] && s[i] == t[j]) {
+				cout << "YES\n*" << s[i - 1] << s[i] << "*\n";
+				return 0;
+			}
+		}
+	cout << "NO\n";
+	return 0;
 }
 
 int main() {
-    //ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    int test = 1, tc = 0;
-    //Int(test);
-    cin >> test;
-    while (test--) {
-        //printf("Case %d: ", ++tc);
-        solve();
-    }
-    return 0;
+	//ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	int test = 1, tc = 0;
+	//Int(test);
+	cin >> test;
+	while (test--) {
+		//printf("Case %d: ", ++tc);
+		solve();
+	}
+	return 0;
 }
