@@ -1,9 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define lpi(n)   for(int i=0 ; i<n ; i++)
-#define lpj(n)   for(int j=0 ; j<n ; j++)
-#define ll       long long int
+#define ll     	 long long int
 #define ull      unsigned ll
 #define pii      pair<int, int>
 #define pll      pair<ll, ll>
@@ -20,31 +18,28 @@ using namespace std;
 #define mnv(v)   *min_element(v.begin(), v.end())
 const int MOD =  (int)1e9 + 7;
 
-
-int smallestDivisor(int n)
-{
-    // if divisible by 2
-    if (n % 2 == 0)
-        return 2;
- 
-    // iterate from 3 to sqrt(n)
-    for (int i = 3; i * i <= n; i += 2) {
-        if (n % i == 0)
-            return i;
-    }
- 
-    return n;
-}
- 
 int solve() {
-    int x,y;
-    cin>>x>>y;
-    int ny=y-x-smallestDivisor(x);
-    if (ny&1)
+    int n;
+    cin>>n;
+    string s,p="meow",nw={};
+    cin>>s;
+    for (int i = 0; i < n; ++i)
+        s[i]=tolower(s[i]);
+
+    nw+=s[0];
+    for (int i = 1; i < n; ++i)
     {
-        cout<<ny/2+2<<endl;
+        if (s[i-1]!=s[i])
+        {
+            nw+=s[i];
+        }
     }
-    else cout<<ny/2+1<<endl;
+    if (p==nw)
+    {
+        yes
+    }
+    else no
+    
     return 0;
 }
 

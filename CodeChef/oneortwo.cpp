@@ -21,30 +21,16 @@ using namespace std;
 const int MOD =  (int)1e9 + 7;
 
 
-int smallestDivisor(int n)
-{
-    // if divisible by 2
-    if (n % 2 == 0)
-        return 2;
- 
-    // iterate from 3 to sqrt(n)
-    for (int i = 3; i * i <= n; i += 2) {
-        if (n % i == 0)
-            return i;
-    }
- 
-    return n;
-}
- 
+
 int solve() {
     int x,y;
     cin>>x>>y;
-    int ny=y-x-smallestDivisor(x);
-    if (ny&1)
+    if ((x>y&&x-y>=2)||((x==y) && (x&1))||(x&1)&&(y-x==1))
     {
-        cout<<ny/2+2<<endl;
+    	cout<<"CHEF"<<endl;
+    	return 0;
     }
-    else cout<<ny/2+1<<endl;
+    else cout<<"CHEFINA"<<endl;
     return 0;
 }
 
