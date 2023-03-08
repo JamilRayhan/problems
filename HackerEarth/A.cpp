@@ -1,61 +1,47 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-#define lpi(n)   for(int i=0 ; i<n ; i++)
-#define lpj(n)   for(int j=0 ; j<n ; j++)
-#define ll       long long int
-#define ull      unsigned ll
-#define pii      pair<int, int>
-#define pll      pair<ll, ll>
-#define mp       make_pair
-#define pb       push_back
-#define gcd      __gcd
-#define str_int  stoi
-#define sz(x)    (int) x.size()
-#define endl     "\n"
-#define yes      cout<<"YES"<<endl;
-#define no       cout<<"NO"<<endl;
-#define all(v)   v.begin(), v.end()
-#define mxv(v)   *max_element(v.begin(), v.end())
-#define mnv(v)   *min_element(v.begin(), v.end())
-const int MOD =  (int)1e9 + 7;
+const int MOD = 1000000007;
 
-
-int smallestDivisor(int n)
-{
-    // if divisible by 2
-    if (n % 2 == 0)
-        return 2;
- 
-    // iterate from 3 to sqrt(n)
-    for (int i = 3; i * i <= n; i += 2) {
-        if (n % i == 0)
-            return i;
-    }
- 
-    return n;
+int count_permutation_subsequences(vector<int>& A) {
+int n = A.size();
+vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
+for (int i = 0; i <= n; i++) {
+dp[i][0] = 1;
 }
- 
-int solve() {
-    int x,y;
-    cin>>x>>y;
-    int ny=y-x-smallestDivisor(x);
-    if (ny&1)
-    {
-        cout<<ny/2+2<<endl;
+
+
+
+
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= i; j++) {
+        dp[i][j] = dp[i-1][j-1];
+        if (A[i-1] > j) {
+            dp[i][j] = (dp[i][j] + dp[i-1][j]) % MOD;
+        }
     }
-    else cout<<ny/2+1<<endl;
-    return 0;
+}
+
+int res = 0;
+for (int i = 1; i <= n; i++) {
+    res = (res + dp[n][i]) % MOD;
+}
+
+return res;
 }
 
 int main() {
-    //ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    int test = 1, tc = 0;
-    //Int(test);
-    cin >> test;
-    while (test--) {
-        //printf("Case %d: ", ++tc);
-        solve();
-    }
-    return 0;
+int t;
+cin >> t;
+while (t--) {
+int n;
+cin >> n;
+vector<int> A(n);
+for (int i = 0; i < n; i++) {
+cin >> A[i];
+}
+cout << count_permutation_subsequences(A) << endl;
+}
+return 0;
 }
