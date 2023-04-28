@@ -24,17 +24,23 @@ const int   MOD =   (int)1e9 + 7;
 const double pi =   3.14159265359;
 
 int solve() {
-    int n,mn=INT_MAX;
-    cin>>n;
-    vector<int> v(n);
-    unordered_map<int, int> mp;
+    int n,l;
+    cin>>n>>l;
+    vector<int> v;
     for (int i = 0; i < n; ++i)
     {
-        cin>>v[i];
-        mn=min(mn,v[i]);
-        mp[v[i]]++;
+    	int x;
+    	cin>>x;
+    	v.push_back(x);
     }
-    cout<<n-mp[mn]<<endl;
+    sort(all(v));
+    int ans=2*max(v[0],l-v[n-1]);
+
+    for (int i = 0; i < n-1; ++i)
+    {
+    	ans=max(ans,v[i+1]-v[i]);
+    }
+    printf("%.10f\n",ans/2.0);
     return 0;
 }
 
@@ -42,7 +48,7 @@ int main() {
     //ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
     int test = 1, tc = 0;
     //Int(test);
-    cin >> test;
+    //cin >> test;
     while (test--) {
         //printf("Case %d: ", ++tc);
         solve();

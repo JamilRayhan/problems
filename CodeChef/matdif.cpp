@@ -17,35 +17,57 @@ using namespace std;
 #define mxv(v)       *max_element(all(v))
 #define mnv(v)       *min_element(all(v))
 #define sumv(v)      accumulate(all(v), 0)
-#define cntv(v,e)    count(all(v), e) 
+#define cntv(v,e)    count(all(v), e)
 #define rev(v)       reverse(all(v))
 
 const int   MOD =   (int)1e9 + 7;
 const double pi =   3.14159265359;
 
 int solve() {
-    int n,mn=INT_MAX;
-    cin>>n;
-    vector<int> v(n);
-    unordered_map<int, int> mp;
-    for (int i = 0; i < n; ++i)
-    {
-        cin>>v[i];
-        mn=min(mn,v[i]);
-        mp[v[i]]++;
-    }
-    cout<<n-mp[mn]<<endl;
-    return 0;
+	int n, nn;
+	cin >> n;
+	nn = ((n * n) / 2);
+	vector<int> v;
+	if (n & 1)
+	{
+		for (int i = 0, x = 1; i < nn + 1; ++i)
+		{
+			v.push_back(x);
+			x += 2;
+		}
+	}
+	else {
+		for (int i = 0, x = 1; i < nn; ++i)
+		{
+			v.push_back(x);
+			x += 2;
+		}
+	}
+	for (int i = 0, x = 2; i < nn; ++i)
+	{
+		v.push_back(x);
+		x += 2;
+	}
+	int j=0,m=n;
+	for (int i = 0; i < n; ++i)
+	{
+		for (  ; j < m; ++j)
+		{
+			cout<<v[j]<<" ";
+		}cout<<endl;
+		m+=n;
+	}
+	return 0;
 }
 
 int main() {
-    //ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    int test = 1, tc = 0;
-    //Int(test);
-    cin >> test;
-    while (test--) {
-        //printf("Case %d: ", ++tc);
-        solve();
-    }
-    return 0;
+	//ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	int test = 1, tc = 0;
+	//Int(test);
+	cin >> test;
+	while (test--) {
+		//printf("Case %d: ", ++tc);
+		solve();
+	}
+	return 0;
 }
